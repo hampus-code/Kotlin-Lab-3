@@ -10,6 +10,7 @@ import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -54,8 +55,13 @@ fun LoginScreen() {
                 leadingIcon = { Icon(imageVector = Icons.Outlined.Lock, contentDescription = "")},
                 trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "")},
                 value = "Password", onValueChange = {},
-                label = { Text(text = "Password")}
+                label = { Text(text = "Password")},
+                modifier = Modifier.padding(vertical = 10.dp)
             )
+
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Login")
+            }
 
         }
 
