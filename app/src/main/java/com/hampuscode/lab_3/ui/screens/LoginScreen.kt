@@ -74,12 +74,18 @@ fun LoginScreen() {
             )
 
             TextButton(onClick = { /*TODO*/ }) {
-                Text(text = "Don't have an account? Register here",
+                Text(text = "Forgot password?",
                     textDecoration = TextDecoration.Underline)
             }
 
             Button(onClick = { /*TODO*/ }) {
                 Text(text = "Login")
+            }
+            
+            Text(text = "Don't have an account? Register here")
+
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Register")
             }
 
         }
