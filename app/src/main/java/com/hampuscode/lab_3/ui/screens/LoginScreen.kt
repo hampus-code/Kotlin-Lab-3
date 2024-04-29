@@ -81,7 +81,7 @@ fun LoginScreen() {
             Button(onClick = { /*TODO*/ }) {
                 Text(text = "Login")
             }
-            
+
             Text(text = "Don't have an account? Register here")
 
             Button(onClick = { /*TODO*/ }) {

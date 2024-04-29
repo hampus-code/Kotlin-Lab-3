@@ -64,6 +64,10 @@ fun RegisterScreen() {
                 Text(text = "Register")
             }
 
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Back to Login")
+            }
+
         }
 
     }
