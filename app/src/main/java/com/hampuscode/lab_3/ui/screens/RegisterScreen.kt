@@ -85,7 +85,9 @@ fun RegisterScreen(navController: NavController, context: Context) {
                 Text(text = "Register")
             }
 
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = {
+                navController.navigate("login_screen")
+            }) {
                 Text(text = "Back to Login")
             }
 

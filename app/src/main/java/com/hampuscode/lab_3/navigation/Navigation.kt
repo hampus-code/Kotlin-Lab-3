@@ -19,7 +19,7 @@ fun ComposeNavigation(context: Context) {
         composable("home_screen") {
             HomeScreen(navController = navController)
         }
-        composable("log_in_screen") {
+        composable("login_screen") {
             LoginScreen(navController = navController, context = context)
         }
         composable("register_screen") {
