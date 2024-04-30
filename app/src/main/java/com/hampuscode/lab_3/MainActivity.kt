@@ -1,5 +1,6 @@
 package com.hampuscode.lab_3
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import com.hampuscode.lab_3.navigation.ComposeNavigation
 import com.hampuscode.lab_3.ui.screens.LoginScreen
 import com.hampuscode.lab_3.ui.theme.Lab_3Theme
 
@@ -24,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    LoginScreen()
+                    ComposeNavigation(context = this)
                 }
             }
         }
