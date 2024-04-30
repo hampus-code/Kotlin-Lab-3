@@ -58,7 +58,7 @@ fun RegisterScreen(navController: NavController, context: Context) {
             OutlinedTextField(
                 leadingIcon = { Icon(imageVector = Icons.Outlined.AccountCircle, contentDescription = "") },
                 trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "") },
-                value = "Username", onValueChange = {},
+                value = "", onValueChange = {},
                 label = { Text(text = "Username") },
                 modifier = Modifier.padding(vertical = 10.dp)
             )
@@ -66,7 +66,7 @@ fun RegisterScreen(navController: NavController, context: Context) {
             OutlinedTextField(
                 leadingIcon = { Icon(imageVector = Icons.Outlined.Lock, contentDescription = "") },
                 trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "") },
-                value = "Password", onValueChange = {},
+                value = "", onValueChange = {},
                 label = { Text(text = "Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.padding(vertical = 10.dp)
@@ -75,7 +75,7 @@ fun RegisterScreen(navController: NavController, context: Context) {
             OutlinedTextField(
                 leadingIcon = { Icon(imageVector = Icons.Outlined.Lock, contentDescription = "") },
                 trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "") },
-                value = "Password", onValueChange = {},
+                value = "", onValueChange = {},
                 label = { Text(text = "Confirm Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.padding(vertical = 10.dp)
