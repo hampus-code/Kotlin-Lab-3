@@ -15,10 +15,13 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,6 +40,10 @@ fun RegisterScreenPreview() {
 }
 @Composable
 fun RegisterScreen(navController: NavController, context: Context) {
+
+    val enteredUsername = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for username
+    val enteredPassword = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for password
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -58,7 +65,8 @@ fun RegisterScreen(navController: NavController, context: Context) {
             OutlinedTextField(
                 leadingIcon = { Icon(imageVector = Icons.Outlined.AccountCircle, contentDescription = "") },
                 trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "") },
-                value = "", onValueChange = {},
+                value = enteredUsername.value,
+                onValueChange = { enteredUsername.value = it },
                 label = { Text(text = "Username") },
                 modifier = Modifier.padding(vertical = 10.dp)
             )
@@ -66,7 +74,8 @@ fun RegisterScreen(navController: NavController, context: Context) {
             OutlinedTextField(
                 leadingIcon = { Icon(imageVector = Icons.Outlined.Lock, contentDescription = "") },
                 trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "") },
-                value = "", onValueChange = {},
+                value = enteredPassword.value
+                , onValueChange = { enteredPassword.value = it },
                 label = { Text(text = "Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.padding(vertical = 10.dp)
@@ -75,7 +84,8 @@ fun RegisterScreen(navController: NavController, context: Context) {
             OutlinedTextField(
                 leadingIcon = { Icon(imageVector = Icons.Outlined.Lock, contentDescription = "") },
                 trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "") },
-                value = "", onValueChange = {},
+                value = enteredPassword.value,
+                onValueChange = { enteredPassword.value = it },
                 label = { Text(text = "Confirm Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.padding(vertical = 10.dp)
