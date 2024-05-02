@@ -8,9 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import com.hampuscode.lab_3.user.UserRepository
 
 @Composable
-fun UserLoggedInScreen(navController: NavController, username: String) {
+fun UserLoggedInScreen(navController: NavController, username: String, userRepository: UserRepository) {
 
     Column(
         modifier = Modifier.fillMaxSize(),

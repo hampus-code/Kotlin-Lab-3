@@ -14,5 +14,8 @@ class User(
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
 
+    override fun toString(): String {
+        return "Username: $userName, Password: $password, Id: $id"
+    }
 
 }

@@ -28,6 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.hampuscode.lab_3.user.User
+import com.hampuscode.lab_3.user.UserRepository
+import kotlinx.coroutines.Dispatchers
 
 
 @Composable
@@ -36,10 +39,10 @@ fun RegisterScreenPreview() {
     val navController = rememberNavController()
     val context = LocalContext.current
 
-    RegisterScreen(navController = navController, context = context)
+    //RegisterScreen(navController = navController, context = context,)
 }
 @Composable
-fun RegisterScreen(navController: NavController, context: Context) {
+fun RegisterScreen(navController: NavController, context: Context, userRepository: UserRepository) {
 
     val enteredUsername = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for username
     val enteredPassword = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for password
@@ -91,7 +94,22 @@ fun RegisterScreen(navController: NavController, context: Context) {
                 modifier = Modifier.padding(vertical = 10.dp)
             )
 
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = {
+
+                val username = enteredUsername.value.text
+                val password = enteredPassword.value.text
+
+                userRepository.performDatabaseOperation(Dispatchers.IO) {
+                    val user = User(username, password)
+                    userRepository.insertOrUpdateUser(user)
+
+                    userRepository.performDatabaseOperation(Dispatchers.Main) {
+                        userRepository.findAllUsers().collect {
+                            println(it)
+                        }
+                    }
+
+                 }}) {
                 Text(text = "Register")
             }
 

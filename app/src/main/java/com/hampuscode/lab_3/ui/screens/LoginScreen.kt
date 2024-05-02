@@ -22,6 +22,8 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -38,6 +40,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hampuscode.lab_3.user.User
+import com.hampuscode.lab_3.user.UserRepository
 
 @Composable
 @Preview(showBackground = true)
@@ -45,16 +48,17 @@ fun LoginScreenPreview() {
     val navController = rememberNavController()
     val context = LocalContext.current
 
-    LoginScreen(navController = navController, context = context)
+    //LoginScreen(navController = navController, context = context)
 }
 
 @Composable
-fun LoginScreen(navController: NavController, context: Context) {
+fun LoginScreen(navController: NavController, context: Context, userRepository: UserRepository) {
 
     val enteredUsername = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for username
     val enteredPassword = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for password
 
     val userData = remember { User(userName = "", password = "") } //Remembering the user created from the User class
+    val users by userRepository.findAllUsers().collectAsState(initial = emptyList())
 
     Column(
         modifier = Modifier
@@ -105,8 +109,12 @@ fun LoginScreen(navController: NavController, context: Context) {
             }
 
             Button(onClick = {
-                if (enteredUsername.value.text == userData.userName && enteredPassword.value.text == userData.password) {
-                navController.navigate("UserLoggedInScreen/${userData.userName}/${userData.password}")
+                val username = enteredUsername.value.text
+                val password = enteredPassword.value.text
+
+                val user = users.find { it.userName == username && it.password == password }
+                if (user != null) {
+                    navController.navigate("user-logged-in-screen/${user.userName}")
             } else {
                 //If login is incorrect the Toast shows
                 Toast.makeText(
