@@ -1,6 +1,7 @@
 package com.hampuscode.lab_3.ui.screens
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.hampuscode.lab_3.user.User
 
 @Composable
 @Preview(showBackground = true)
@@ -51,6 +53,8 @@ fun LoginScreen(navController: NavController, context: Context) {
 
     val enteredUsername = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for username
     val enteredPassword = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for password
+
+    val userData = remember { User(userName = "", password = "") } //Remembering the user created from the User class
 
     Column(
         modifier = Modifier
@@ -100,7 +104,18 @@ fun LoginScreen(navController: NavController, context: Context) {
                     textDecoration = TextDecoration.Underline)
             }
 
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = {
+                if (enteredUsername.value.text == userData.userName && enteredPassword.value.text == userData.password) {
+                navController.navigate("UserLoggedInScreen/${userData.userName}/${userData.password}")
+            } else {
+                //If login is incorrect the Toast shows
+                Toast.makeText(
+                    context,
+                    "Incorrect username or password, please try again.",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            } }) {
                 Text(text = "Login")
             }
 

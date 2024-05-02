@@ -10,7 +10,7 @@ class User(
     var password: String
 ) {
 
-    
+
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
 

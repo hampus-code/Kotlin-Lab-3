@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.hampuscode.lab_3.ui.screens.HomeScreen
 import com.hampuscode.lab_3.ui.screens.LoginScreen
 import com.hampuscode.lab_3.ui.screens.RegisterScreen
+import com.hampuscode.lab_3.ui.screens.UserLoggedInScreen
 
 @Composable
 fun ComposeNavigation(context: Context) {
@@ -24,6 +25,10 @@ fun ComposeNavigation(context: Context) {
         }
         composable("register_screen") {
             RegisterScreen(navController = navController, context = context)
+        }
+        composable("user-logged-in-screen/{username}/{password}") { backStackEntry ->
+            val username = backStackEntry.arguments?.getString("username") ?: ""
+            UserLoggedInScreen(navController, username)
         }
     }
 }
