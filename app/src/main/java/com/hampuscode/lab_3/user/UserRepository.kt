@@ -20,11 +20,10 @@ class UserRepository(
     // DELETE USER BY ID
     fun deleteUserById(user: User) {
 
-        // TODO - FIND USER
-
         myDatabase.userDao().deleteUserById(user)
     }
 
+    // Find all users
     fun findAllUsers(): Flow<List<User>> {
         return myDatabase.userDao().findAllUsers()
     }

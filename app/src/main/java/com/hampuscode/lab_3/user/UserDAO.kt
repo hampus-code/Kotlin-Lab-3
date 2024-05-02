@@ -13,15 +13,10 @@ interface UserDAO {
     @Upsert
     fun insertOrUpdateUser(user: User)
 
+    //Delete user by ID
     @Delete
     fun deleteUserById(user: User)
 
-    // TODO - Philosophy of Queries and Functions
-    // TODO - Check for GET annotation
-    // TODO - SQL BONUS module
-    // TODO - Database Inspector
-
-    // TODO - 10:10
 
     @Query("SELECT * FROM users")
     fun findAllUsers(): Flow<List<User>>
