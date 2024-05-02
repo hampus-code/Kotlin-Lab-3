@@ -1,4 +1,4 @@
-package com.hampuscode.lab_3.models
+package com.hampuscode.lab_3.user
 
 data class User(
     val userName: String,

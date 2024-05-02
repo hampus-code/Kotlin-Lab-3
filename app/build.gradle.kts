@@ -1,6 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
+    // Annotation Processor NEW
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -50,6 +53,17 @@ android {
 }
 
 dependencies {
+
+    // Room DB
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    androidTestImplementation("androidx.room:room-testing:2.6.1")
+
+    // To use Kotlin annotation processing tool (kapt)
+    ksp("androidx.room:room-compiler:2.6.1")
+
+    // LifeCycle
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
     //Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
