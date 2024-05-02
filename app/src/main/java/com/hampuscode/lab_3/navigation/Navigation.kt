@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.hampuscode.lab_3.ui.screens.AboutScreen
 import com.hampuscode.lab_3.ui.screens.HomeScreen
 import com.hampuscode.lab_3.ui.screens.LoginScreen
 import com.hampuscode.lab_3.ui.screens.RegisterScreen
@@ -20,6 +21,9 @@ fun ComposeNavigation(context: Context, userRepository: UserRepository) {
     ) {
         composable("home_screen") {
             HomeScreen(navController = navController)
+        }
+        composable("about_screen") {
+            AboutScreen(navController = navController)
         }
         composable("login_screen") {
             LoginScreen(navController = navController, context = context, userRepository = userRepository)
