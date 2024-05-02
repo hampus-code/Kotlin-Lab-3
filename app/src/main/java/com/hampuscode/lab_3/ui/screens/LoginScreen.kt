@@ -57,7 +57,7 @@ fun LoginScreen(navController: NavController, context: Context, userRepository: 
     val enteredUsername = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for username
     val enteredPassword = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for password
 
-    val userData = remember { User(userName = "", password = "") } //Remembering the user created from the User class
+    //val userData = remember { User(userName = "", password = "") } //Remembering the user created from the User class
     val users by userRepository.findAllUsers().collectAsState(initial = emptyList())
 
     Column(
