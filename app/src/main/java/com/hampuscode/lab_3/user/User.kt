@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "users")
 class User(
     var userName: String,
-    var password: Int
+    var password: String
 ) {
 
-    // TODO - Check for automatic Generation
+    
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
 
