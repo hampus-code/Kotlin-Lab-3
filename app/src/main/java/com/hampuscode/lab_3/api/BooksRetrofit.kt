@@ -13,7 +13,6 @@ import kotlin.coroutines.suspendCoroutine
 object BooksRetrofit {
 
     //https://openlibrary.org/search.json
-    //https://opentdb.com/
 
     private const val BASE_URL = "https://openlibrary.org/"
 
