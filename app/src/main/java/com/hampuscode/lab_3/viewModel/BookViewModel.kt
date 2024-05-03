@@ -1,4 +1,4 @@
-package com.hampuscode.lab_3.viewmodel
+package com.hampuscode.lab_3.viewModel
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

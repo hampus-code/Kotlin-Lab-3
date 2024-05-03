@@ -54,6 +54,13 @@ fun HomeScreen(navController: NavController) {
                 modifier = Modifier.padding(bottom = 200.dp)
             )
 
+            Button(
+                modifier = Modifier.padding(30.dp),
+                onClick = {
+                navController.navigate("about_screen")
+            }) {
+                Text(text = "About")
+            }
             Button(onClick = {
                 navController.navigate("login_screen")
             }) {
