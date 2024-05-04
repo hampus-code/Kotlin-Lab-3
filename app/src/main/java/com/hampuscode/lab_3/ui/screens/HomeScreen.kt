@@ -4,9 +4,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -44,18 +49,29 @@ fun HomeScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(vertical = 100.dp),
+                .padding(vertical = 30.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Text(
-                text = "Welcome to Book Vault",
-                modifier = Modifier.padding(bottom = 200.dp)
-            )
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Image(
+                    //The apps logo
+                    painter = painterResource(id = R.drawable.book_vault_logo_no_background),
+                    contentDescription = "App Logo",
+                    modifier = Modifier
+                        .size(250.dp)
+                        .offset(x = (-10).dp)
+                )
+                
+            }
 
             Button(
-                modifier = Modifier.padding(30.dp),
+                modifier = Modifier.padding(30.dp)
+                    .padding(top = 50.dp),
                 onClick = {
                 navController.navigate("about_screen")
             }) {
