@@ -1,7 +1,9 @@
 package com.hampuscode.lab_3.ui.screens
 
 import android.content.Context
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,7 +21,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextDecoration
@@ -28,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.hampuscode.lab_3.R
 import com.hampuscode.lab_3.user.User
 import com.hampuscode.lab_3.user.UserRepository
 import kotlinx.coroutines.Dispatchers
@@ -47,79 +52,122 @@ fun RegisterScreen(navController: NavController, context: Context, userRepositor
     val enteredUsername = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for username
     val enteredPassword = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for password
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(vertical = 150.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-
-        Text(text = "Register", modifier = Modifier.padding(),
-            fontSize = 24.sp)
-
+        Image(
+            //Background image
+            painter = painterResource(id = R.drawable.blank_old_paper),
+            contentDescription = "",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.fillMaxSize()
+        )
         Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = 150.dp),
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-
-            OutlinedTextField(
-                leadingIcon = { Icon(imageVector = Icons.Outlined.AccountCircle, contentDescription = "") },
-                trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "") },
-                value = enteredUsername.value,
-                onValueChange = { enteredUsername.value = it },
-                label = { Text(text = "Username") },
-                modifier = Modifier.padding(vertical = 10.dp)
+            Text(
+                text = "Register", modifier = Modifier.padding(),
+                fontSize = 24.sp
             )
 
-            OutlinedTextField(
-                leadingIcon = { Icon(imageVector = Icons.Outlined.Lock, contentDescription = "") },
-                trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "") },
-                value = enteredPassword.value
-                , onValueChange = { enteredPassword.value = it },
-                label = { Text(text = "Password") },
-                visualTransformation = PasswordVisualTransformation(),
-                modifier = Modifier.padding(vertical = 10.dp)
-            )
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
-            OutlinedTextField(
-                leadingIcon = { Icon(imageVector = Icons.Outlined.Lock, contentDescription = "") },
-                trailingIcon = { Icon(imageVector = Icons.Outlined.Clear, contentDescription = "") },
-                value = enteredPassword.value,
-                onValueChange = { enteredPassword.value = it },
-                label = { Text(text = "Confirm Password") },
-                visualTransformation = PasswordVisualTransformation(),
-                modifier = Modifier.padding(vertical = 10.dp)
-            )
 
-            Button(onClick = {
+                OutlinedTextField(
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.AccountCircle,
+                            contentDescription = ""
+                        )
+                    },
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Clear,
+                            contentDescription = ""
+                        )
+                    },
+                    value = enteredUsername.value,
+                    onValueChange = { enteredUsername.value = it },
+                    label = { Text(text = "Username") },
+                    modifier = Modifier.padding(vertical = 10.dp)
+                )
 
-                val username = enteredUsername.value.text
-                val password = enteredPassword.value.text
+                OutlinedTextField(
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Lock,
+                            contentDescription = ""
+                        )
+                    },
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Clear,
+                            contentDescription = ""
+                        )
+                    },
+                    value = enteredPassword.value, onValueChange = { enteredPassword.value = it },
+                    label = { Text(text = "Password") },
+                    visualTransformation = PasswordVisualTransformation(),
+                    modifier = Modifier.padding(vertical = 10.dp)
+                )
 
-                userRepository.performDatabaseOperation(Dispatchers.IO) {
-                    val user = User(username, password)
-                    userRepository.insertOrUpdateUser(user)
+                OutlinedTextField(
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Lock,
+                            contentDescription = ""
+                        )
+                    },
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Clear,
+                            contentDescription = ""
+                        )
+                    },
+                    value = enteredPassword.value,
+                    onValueChange = { enteredPassword.value = it },
+                    label = { Text(text = "Confirm Password") },
+                    visualTransformation = PasswordVisualTransformation(),
+                    modifier = Modifier.padding(vertical = 10.dp)
+                )
 
-                    userRepository.performDatabaseOperation(Dispatchers.Main) {
-                        userRepository.findAllUsers().collect {
-                            println(it)
+                Button(onClick = {
+
+                    val username = enteredUsername.value.text
+                    val password = enteredPassword.value.text
+
+                    userRepository.performDatabaseOperation(Dispatchers.IO) {
+                        val user = User(username, password)
+                        userRepository.insertOrUpdateUser(user)
+
+                        userRepository.performDatabaseOperation(Dispatchers.Main) {
+                            userRepository.findAllUsers().collect {
+                                println(it)
+                            }
                         }
+
                     }
+                }) {
+                    Text(text = "Register")
+                }
 
-                 }}) {
-                Text(text = "Register")
-            }
+                Button(onClick = {
+                    navController.navigate("login_screen")
+                }) {
+                    Text(text = "Back to Login")
+                }
 
-            Button(onClick = {
-                navController.navigate("login_screen")
-            }) {
-                Text(text = "Back to Login")
             }
 
         }
-
     }
 }

@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.hampuscode.lab_3.api.Book
 import com.hampuscode.lab_3.user.User
 import com.hampuscode.lab_3.user.UserDAO
 
-// TODO - IF WE CHANGE DATABASE + RUN APP, Versions can cause errors
+
 @Database(entities = [User::class], version = 1)
 abstract class MyDatabase : RoomDatabase() {
 
@@ -25,10 +28,14 @@ abstract class MyDatabase : RoomDatabase() {
                     context.applicationContext,
                     MyDatabase::class.java,
                     "lab-3-db"
-                ).build()
+                )
+                    //Handle migration from version 1 to 2
+
+                    .build()
                 INSTANCE = instance
                 instance
             }
         }
+
     }
 }

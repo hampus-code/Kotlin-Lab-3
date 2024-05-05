@@ -1,9 +1,8 @@
-package com.hampuscode.lab_3.ui.components
+package com.hampuscode.lab_3.composables
 
 //import SpeechToText
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -27,13 +26,19 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 //import coil.compose.AsyncImage
 import com.hampuscode.lab_3.viewModel.BookViewModel
 import com.hampuscode.lab_3.api.BookItem
+import com.hampuscode.lab_3.database.MyDatabase
+import com.hampuscode.lab_3.user.UserRepository
+import kotlinx.coroutines.CoroutineScope
 
 
 @Composable
 fun BookItems(book: BookItem) {
+
     Column {
         Text(text = "Title: ${book.title}")
         Text(text = "Author: ${book.authorName}")
+
+
 
         /*Row {
 
@@ -54,13 +59,13 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
     var isClicked by remember { mutableStateOf(false) }
     var query by remember { mutableStateOf("") }
 
-    var isSpeechClicked by remember { mutableStateOf(false) }
+    //var isSpeechClicked by remember { mutableStateOf(false) }
 
     Column {
         OutlinedTextField(
             trailingIcon = { Icon(imageVector = Icons.Outlined.Phone, contentDescription = "",
                 modifier = Modifier.clickable {
-                    isSpeechClicked = true
+                    //isSpeechClicked = true
                 }) },
             value = query,
             onValueChange = { newQuery ->
@@ -79,7 +84,7 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
             Text(text = "Search")
         }
 
-        /*if (isSpeechClicked) {
+         /*(isSpeechClicked) {
             SpeechToText { receivedText ->
                 query = receivedText
                 isSpeechClicked = false
@@ -103,6 +108,7 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
                             ),
                             modifier = Modifier
                                 .size(width = 400.dp, height = 75.dp)
+                                .padding(2.dp)
                         ) {
                             BookItems(book)
 

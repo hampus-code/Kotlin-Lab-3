@@ -18,6 +18,7 @@ interface UserDAO {
     fun deleteUserById(user: User)
 
 
+
     @Query("SELECT * FROM users")
     fun findAllUsers(): Flow<List<User>>
 

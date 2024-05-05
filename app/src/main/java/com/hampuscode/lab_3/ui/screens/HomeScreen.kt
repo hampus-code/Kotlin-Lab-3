@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hampuscode.lab_3.R
+import com.hampuscode.lab_3.ui.components.CustomButton
 
 @Composable
 @Preview(showBackground = true)
@@ -64,13 +66,14 @@ fun HomeScreen(navController: NavController) {
                     contentDescription = "App Logo",
                     modifier = Modifier
                         .size(250.dp)
-                        .offset(x = (-10).dp)
+                        .offset(x = (-5).dp)
                 )
                 
             }
 
             Button(
-                modifier = Modifier.padding(30.dp)
+                modifier = Modifier
+                    .padding(30.dp)
                     .padding(top = 50.dp),
                 onClick = {
                 navController.navigate("about_screen")
@@ -82,6 +85,15 @@ fun HomeScreen(navController: NavController) {
             }) {
                 Text(text = "Login/Register")
             }
+
+            //Just for testing
+            CustomButton(
+                text = "Custom",
+                onClick = {navController.navigate("login_screen")
+                })
+
+
+
         }
 
     }
