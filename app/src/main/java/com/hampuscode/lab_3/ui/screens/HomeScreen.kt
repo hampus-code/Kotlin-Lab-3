@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hampuscode.lab_3.R
 import com.hampuscode.lab_3.ui.components.CustomButton
+import com.hampuscode.lab_3.ui.components.CustomText
 
 @Composable
 @Preview(showBackground = true)
@@ -91,6 +92,8 @@ fun HomeScreen(navController: NavController) {
                 text = "Custom",
                 onClick = {navController.navigate("login_screen")
                 })
+
+            CustomText(text = "Testing")
 
 
 

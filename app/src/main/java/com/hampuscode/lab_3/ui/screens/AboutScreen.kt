@@ -15,6 +15,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.hampuscode.lab_3.R
+import com.hampuscode.lab_3.ui.components.CustomButton
+import com.hampuscode.lab_3.ui.components.CustomText
 
 @Composable
 fun AboutScreen(navController: NavController) {
@@ -37,7 +39,25 @@ fun AboutScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Text(text = "This is an app about....")
+            CustomText(text = "This is an app where you can search for all kind of books " +
+                    "in an API library. ", modifier = Modifier.padding(horizontal = 50.dp))
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = 100.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        )
+        {
+            CustomButton(text = "Back to Home") {
+                
+            }
+
+            CustomButton(text = "Login", onClick = {
+                navController.navigate("login_screen")
+            })
         }
 
     }

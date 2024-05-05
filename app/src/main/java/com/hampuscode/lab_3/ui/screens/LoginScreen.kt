@@ -119,12 +119,12 @@ fun LoginScreen(navController: NavController, context: Context, userRepository: 
                             contentDescription = ""
                         )
                     },
-                    trailingIcon = {
+                    /*trailingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Clear,
                             contentDescription = ""
                         )
-                    },
+                    },*/
                     value = enteredPassword.value,
                     onValueChange = { enteredPassword.value = it },
                     label = { Text(text = "Password") },
