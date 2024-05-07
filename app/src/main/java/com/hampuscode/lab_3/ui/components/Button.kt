@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-
+val buttonColor = Color(0xFF477ad8)
 
 
 @Composable
@@ -23,7 +23,7 @@ fun CustomButton(
         onClick = onClick,
         modifier = Modifier.padding(8.dp),
         shape = ButtonDefaults.shape,
-        colors = ButtonDefaults.buttonColors(containerColor = Color.Blue, contentColor = Color.White)
+        colors = ButtonDefaults.buttonColors(containerColor = buttonColor, contentColor = Color.White)
     ) {
         Text(text = text)
     }

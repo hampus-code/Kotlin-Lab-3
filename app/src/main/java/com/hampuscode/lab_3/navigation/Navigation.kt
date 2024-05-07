@@ -17,7 +17,7 @@ fun ComposeNavigation(context: Context, userRepository: UserRepository) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = "home_screen" //This is HomeScreen
+        startDestination = "user-logged-in-screen/{username}" //This is HomeScreen
     ) {
         composable("home_screen") {
             HomeScreen(navController = navController)

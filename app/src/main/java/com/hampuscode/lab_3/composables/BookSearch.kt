@@ -35,7 +35,7 @@ import kotlinx.coroutines.CoroutineScope
 fun BookItems(book: BookItem) {
 
     Column {
-        Text(text = "Title: ${book.title}")
+        Text(text = "Title: ${book.title}", modifier = Modifier.padding(10.dp))
         Text(text = "Author: ${book.authorName}")
 
 
@@ -60,6 +60,7 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
     var query by remember { mutableStateOf("") }
 
     //var isSpeechClicked by remember { mutableStateOf(false) }
+
 
     Column {
         OutlinedTextField(
