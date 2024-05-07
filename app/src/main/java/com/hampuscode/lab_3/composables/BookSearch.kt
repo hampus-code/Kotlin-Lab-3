@@ -1,6 +1,6 @@
 package com.hampuscode.lab_3.composables
 
-//import SpeechToText
+//import com.hampuscode.lab_3.ui.components.SpeechToText
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -85,7 +85,7 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
             Text(text = "Search")
         }
 
-         /*(isSpeechClicked) {
+         /*if (isSpeechClicked) {
             SpeechToText { receivedText ->
                 query = receivedText
                 isSpeechClicked = false
@@ -108,7 +108,7 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
                                 defaultElevation = 6.dp
                             ),
                             modifier = Modifier
-                                .size(width = 400.dp, height = 75.dp)
+                                .size(width = 400.dp, height = 175.dp)
                                 .padding(2.dp)
                         ) {
                             BookItems(book)

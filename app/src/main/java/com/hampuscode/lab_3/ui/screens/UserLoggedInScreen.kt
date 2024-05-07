@@ -49,7 +49,7 @@ fun UserLoggedInScreen(navController: NavController, username: String, userRepos
         }
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.padding(100.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
