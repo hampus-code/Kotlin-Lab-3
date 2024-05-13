@@ -11,13 +11,14 @@ import com.hampuscode.lab_3.ui.screens.LoginScreen
 import com.hampuscode.lab_3.ui.screens.RegisterScreen
 import com.hampuscode.lab_3.ui.screens.UserLoggedInScreen
 import com.hampuscode.lab_3.user.UserRepository
+import com.hampuscode.lab_3.viewModel.BookViewModel
 
 @Composable
 fun ComposeNavigation(context: Context, userRepository: UserRepository) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = "user-logged-in-screen/{username}" //This is HomeScreen
+        startDestination = "home_screen" //This is HomeScreen
     ) {
         composable("home_screen") {
             HomeScreen(navController = navController)
@@ -33,7 +34,7 @@ fun ComposeNavigation(context: Context, userRepository: UserRepository) {
         }
         composable("user-logged-in-screen/{username}") { backStackEntry ->
             val username = backStackEntry.arguments?.getString("username") ?: ""
-            UserLoggedInScreen(navController, username, userRepository)
+            UserLoggedInScreen(navController, username, userRepository, BookViewModel())
         }
     }
 }

@@ -5,13 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -39,6 +39,8 @@ fun HomeScreenPreview() {
 @Composable
 fun HomeScreen(navController: NavController) {
 
+
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -52,7 +54,8 @@ fun HomeScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(vertical = 30.dp),
+                .padding(vertical = 30.dp)
+                .statusBarsPadding(),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -69,33 +72,19 @@ fun HomeScreen(navController: NavController) {
                         .size(250.dp)
                         .offset(x = (-5).dp)
                 )
-                
+
             }
 
-            Button(
+            CustomButton(
                 modifier = Modifier
                     .padding(30.dp)
                     .padding(top = 50.dp),
-                onClick = {
-                navController.navigate("about_screen")
-            }) {
-                Text(text = "About")
-            }
-            Button(onClick = {
-                navController.navigate("login_screen")
-            }) {
-                Text(text = "Login/Register")
-            }
+                text = "About",
+                onClick = {navController.navigate("about_screen")})
 
-            //Just for testing
             CustomButton(
-                text = "Custom",
-                onClick = {navController.navigate("login_screen")
-                })
-
-            CustomText(text = "Testing")
-
-
+                text = "Login/Register",
+                onClick = {navController.navigate("login_screen")})
 
         }
 

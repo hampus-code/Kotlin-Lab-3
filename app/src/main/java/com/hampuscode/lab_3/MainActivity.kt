@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         val userRepository = UserRepository(MyDatabase.getInstance(applicationContext), CoroutineScope(
             Dispatchers.IO))
         setContent {
@@ -36,5 +37,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
     }
 }

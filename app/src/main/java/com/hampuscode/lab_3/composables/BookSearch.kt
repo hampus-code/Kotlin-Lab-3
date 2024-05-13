@@ -23,12 +23,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.hampuscode.lab_3.api.Book
 //import coil.compose.AsyncImage
 import com.hampuscode.lab_3.viewModel.BookViewModel
 import com.hampuscode.lab_3.api.BookItem
-import com.hampuscode.lab_3.database.MyDatabase
-import com.hampuscode.lab_3.user.UserRepository
-import kotlinx.coroutines.CoroutineScope
+import com.hampuscode.lab_3.ui.components.CustomButton
 
 
 @Composable
@@ -36,7 +35,7 @@ fun BookItems(book: BookItem) {
 
     Column {
         Text(text = "Title: ${book.title}", modifier = Modifier.padding(10.dp))
-        Text(text = "Author: ${book.authorName}")
+        Text(text = "Author: ${book.authorName}", modifier = Modifier.padding(10.dp))
 
 
 
@@ -75,15 +74,13 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
             label = { Text("Search Book") }
         )
 
-        Button(
+        CustomButton(text = "Search",
             onClick = {
                 isClicked = true
                 viewModel.fetchBook(query) // Pass the search query to fetchBook
             },
             modifier = Modifier.padding(bottom = 16.dp)
-        ) {
-            Text(text = "Search")
-        }
+        )
 
          /*if (isSpeechClicked) {
             SpeechToText { receivedText ->
@@ -108,7 +105,7 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
                                 defaultElevation = 6.dp
                             ),
                             modifier = Modifier
-                                .size(width = 400.dp, height = 175.dp)
+                                .size(width = 400.dp, height = 75.dp)
                                 .padding(2.dp)
                         ) {
                             BookItems(book)
@@ -125,7 +122,7 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
 
 
 @Composable
-fun Books() {
-    val viewModel: BookViewModel = viewModel()
+fun Books(viewModel: BookViewModel) {
+    //val viewModel: BookViewModel = viewModel()
     BookCard(viewModel = viewModel)
 }

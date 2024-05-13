@@ -51,11 +51,13 @@ fun AboutScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         )
         {
-            CustomButton(text = "Back to Home") {
-                
-            }
+            CustomButton(
+                text = "Back to Home",
+                onClick = {navController.navigate("home_screen")
+                })
 
-            CustomButton(text = "Login", onClick = {
+            CustomButton(
+                text = "Login", onClick = {
                 navController.navigate("login_screen")
             })
         }
