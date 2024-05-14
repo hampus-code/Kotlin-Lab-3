@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Clear
@@ -19,6 +21,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -33,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hampuscode.lab_3.R
+import com.hampuscode.lab_3.ui.components.CustomButton
 import com.hampuscode.lab_3.user.User
 import com.hampuscode.lab_3.user.UserRepository
 import kotlinx.coroutines.Dispatchers
@@ -49,8 +53,8 @@ fun RegisterScreenPreview() {
 @Composable
 fun RegisterScreen(navController: NavController, context: Context, userRepository: UserRepository) {
 
-    val enteredUsername = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for username
-    val enteredPassword = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for password
+    val enteredUsername = rememberSaveable { mutableStateOf("") } //Remembering user input for username
+    val enteredPassword = rememberSaveable { mutableStateOf("TextFieldValue()") } //Remembering user input for password
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -65,6 +69,7 @@ fun RegisterScreen(navController: NavController, context: Context, userRepositor
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(vertical = 150.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -120,30 +125,12 @@ fun RegisterScreen(navController: NavController, context: Context, userRepositor
                     modifier = Modifier.padding(vertical = 10.dp)
                 )
 
-                OutlinedTextField(
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Lock,
-                            contentDescription = ""
-                        )
-                    },
-                    trailingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Clear,
-                            contentDescription = ""
-                        )
-                    },
-                    value = enteredPassword.value,
-                    onValueChange = { enteredPassword.value = it },
-                    label = { Text(text = "Confirm Password") },
-                    visualTransformation = PasswordVisualTransformation(),
-                    modifier = Modifier.padding(vertical = 10.dp)
-                )
+                CustomButton(
+                    text = "Register",
+                    onClick = {
 
-                Button(onClick = {
-
-                    val username = enteredUsername.value.text
-                    val password = enteredPassword.value.text
+                    val username = enteredUsername.value
+                    val password = enteredPassword.value
 
                     userRepository.performDatabaseOperation(Dispatchers.IO) {
                         val user = User(username, password)
@@ -156,15 +143,13 @@ fun RegisterScreen(navController: NavController, context: Context, userRepositor
                         }
 
                     }
-                }) {
-                    Text(text = "Register")
-                }
+                })
 
-                Button(onClick = {
-                    navController.navigate("login_screen")
-                }) {
-                    Text(text = "Back to Login")
-                }
+                CustomButton(
+                    text = "Back to Login",
+                    onClick = {
+                        navController.navigate("login_screen")
+                    })
 
             }
 

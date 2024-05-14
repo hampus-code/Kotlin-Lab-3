@@ -26,7 +26,6 @@ fun UserLoggedInScreen(navController: NavController, username: String, userRepos
 
 
 
-
     Box(
         modifier = Modifier.fillMaxSize()
     ) {

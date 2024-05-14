@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Lock
@@ -21,6 +23,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -50,15 +53,19 @@ fun LoginScreenPreview() {
 @Composable
 fun LoginScreen(navController: NavController, context: Context, userRepository: UserRepository) {
 
-    val enteredUsername = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for username
-    val enteredPassword = remember { mutableStateOf(TextFieldValue()) } //Remembering user input for password
+    //Remembering user input for username and when rotating the screen
+    val enteredUsername = rememberSaveable { mutableStateOf("") }
 
-    //val userData = remember { User(userName = "", password = "") } //Remembering the user created from the User class
+    //Remembering user input for password and when rotating the screen
+    val enteredPassword = rememberSaveable { mutableStateOf("") }
+
+    
     val users by userRepository.findAllUsers().collectAsState(initial = emptyList())
 
 
     Box(
         modifier = Modifier.fillMaxSize()
+        // TODO// - .verticalScroll(rememberScrollState())
     ) {
         Image(
             //Background image
@@ -70,6 +77,7 @@ fun LoginScreen(navController: NavController, context: Context, userRepository: 
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(vertical = 150.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -134,8 +142,8 @@ fun LoginScreen(navController: NavController, context: Context, userRepository: 
                 }
 
                 CustomButton(text = "Login", onClick = {
-                    val username = enteredUsername.value.text
-                    val password = enteredPassword.value.text
+                    val username = enteredUsername.value
+                    val password = enteredPassword.value
 
                     val user = users.find { it.userName == username && it.password == password }
                     if (user != null) {
