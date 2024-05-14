@@ -41,14 +41,6 @@ import com.hampuscode.lab_3.R
 import com.hampuscode.lab_3.ui.components.CustomButton
 import com.hampuscode.lab_3.user.UserRepository
 
-@Composable
-@Preview(showBackground = true)
-fun LoginScreenPreview() {
-    val navController = rememberNavController()
-    val context = LocalContext.current
-
-    //LoginScreen(navController = navController, context = context)
-}
 
 @Composable
 fun LoginScreen(navController: NavController, context: Context, userRepository: UserRepository) {
@@ -59,7 +51,7 @@ fun LoginScreen(navController: NavController, context: Context, userRepository: 
     //Remembering user input for password and when rotating the screen
     val enteredPassword = rememberSaveable { mutableStateOf("") }
 
-    
+
     val users by userRepository.findAllUsers().collectAsState(initial = emptyList())
 
 
@@ -110,8 +102,6 @@ fun LoginScreen(navController: NavController, context: Context, userRepository: 
 
                     )
 
-                //TODO - Make the clear icon on password an eye instead. And when i hold on the eye you can see the password
-
                 OutlinedTextField(
                     leadingIcon = {
                         Icon(
@@ -119,12 +109,6 @@ fun LoginScreen(navController: NavController, context: Context, userRepository: 
                             contentDescription = ""
                         )
                     },
-                    /*trailingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Clear,
-                            contentDescription = ""
-                        )
-                    },*/
                     value = enteredPassword.value,
                     onValueChange = { enteredPassword.value = it },
                     label = { Text(text = "Password") },

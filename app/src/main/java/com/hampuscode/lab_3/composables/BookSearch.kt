@@ -19,7 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -37,36 +39,20 @@ fun BookItems(book: BookItem) {
         Text(text = "Title: ${book.title}", modifier = Modifier.padding(10.dp))
         Text(text = "Author: ${book.authorName}", modifier = Modifier.padding(10.dp))
 
-
-
-        /*Row {
-
-            AsyncImage(
-                model = "https://covers.openlibrary.org/b/olid/${book.coverEditionKey?.firstOrNull()}-S.jpg",
-                contentDescription = "Cover Image",
-                modifier = Modifier.size(50.dp) // Adjust the size as needed
-            )
-        }*/
-
     }
 }
-
-//API Response: Book(docs=[])
 
 @Composable
 fun BookCard(viewModel: BookViewModel = viewModel()) {
     var isClicked by remember { mutableStateOf(false) }
-    var query by remember { mutableStateOf("") }
 
-    //var isSpeechClicked by remember { mutableStateOf(false) }
+    //Remembering the typed in word, or typed in book, when screen rotates
+    var query by rememberSaveable { mutableStateOf("") }
+
 
 
     Column {
         OutlinedTextField(
-            trailingIcon = { Icon(imageVector = Icons.Outlined.Phone, contentDescription = "",
-                modifier = Modifier.clickable {
-                    //isSpeechClicked = true
-                }) },
             value = query,
             onValueChange = { newQuery ->
                 query = newQuery
@@ -79,15 +65,9 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
                 isClicked = true
                 viewModel.fetchBook(query) // Pass the search query to fetchBook
             },
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 16.dp).align(Alignment.CenterHorizontally)
         )
 
-         /*if (isSpeechClicked) {
-            SpeechToText { receivedText ->
-                query = receivedText
-                isSpeechClicked = false
-            }
-        }*/
 
         if (isClicked) {
             val books by viewModel.bookUiState
@@ -105,8 +85,8 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
                                 defaultElevation = 6.dp
                             ),
                             modifier = Modifier
-                                .size(width = 400.dp, height = 75.dp)
-                                .padding(2.dp)
+                                .size(width = 300.dp, height = 100.dp)
+                                .padding(4.dp)
                         ) {
                             BookItems(book)
 
@@ -118,11 +98,9 @@ fun BookCard(viewModel: BookViewModel = viewModel()) {
     }
 }
 
-// TODO - Try and make covers to show
-
 
 @Composable
-fun Books(viewModel: BookViewModel) {
-    //val viewModel: BookViewModel = viewModel()
+fun Books() {
+    val viewModel: BookViewModel = viewModel()
     BookCard(viewModel = viewModel)
 }

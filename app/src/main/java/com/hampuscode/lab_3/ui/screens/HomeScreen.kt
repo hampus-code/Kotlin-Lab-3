@@ -30,13 +30,6 @@ import com.hampuscode.lab_3.ui.components.CustomButton
 import com.hampuscode.lab_3.ui.components.CustomText
 
 @Composable
-@Preview(showBackground = true)
-fun HomeScreenPreview() {
-    val navController = rememberNavController()
-
-    HomeScreen(navController = navController)
-}
-@Composable
 fun HomeScreen(navController: NavController) {
 
 

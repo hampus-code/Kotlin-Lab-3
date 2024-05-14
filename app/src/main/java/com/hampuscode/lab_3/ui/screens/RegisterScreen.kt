@@ -94,12 +94,6 @@ fun RegisterScreen(navController: NavController, context: Context, userRepositor
                             contentDescription = ""
                         )
                     },
-                    trailingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Clear,
-                            contentDescription = ""
-                        )
-                    },
                     value = enteredUsername.value,
                     onValueChange = { enteredUsername.value = it },
                     label = { Text(text = "Username") },
@@ -113,13 +107,8 @@ fun RegisterScreen(navController: NavController, context: Context, userRepositor
                             contentDescription = ""
                         )
                     },
-                    trailingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Clear,
-                            contentDescription = ""
-                        )
-                    },
-                    value = enteredPassword.value, onValueChange = { enteredPassword.value = it },
+                    value = enteredPassword.value,
+                    onValueChange = { enteredPassword.value = it },
                     label = { Text(text = "Password") },
                     visualTransformation = PasswordVisualTransformation(),
                     modifier = Modifier.padding(vertical = 10.dp)

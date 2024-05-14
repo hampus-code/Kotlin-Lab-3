@@ -12,20 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.hampuscode.lab_3.R
 import com.hampuscode.lab_3.composables.Books
 import com.hampuscode.lab_3.ui.components.CustomButton
 import com.hampuscode.lab_3.ui.components.CustomText
-import com.hampuscode.lab_3.user.UserRepository
-import com.hampuscode.lab_3.viewModel.BookViewModel
-
 
 @Composable
-fun UserLoggedInScreen(navController: NavController, username: String, userRepository: UserRepository) {
-
-
+fun SearchBooksScreen(navController: NavController) {
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -43,24 +37,7 @@ fun UserLoggedInScreen(navController: NavController, username: String, userRepos
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            CustomText(text = "Welcome $username", modifier = Modifier.padding(vertical = 5.dp))
-            CustomText(
-                text = "Down below you can go to another screen where search for your favourite books!", modifier = Modifier.padding(horizontal = 50.dp)
-            )
-
-        }
-
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            //Books()
-
-            CustomButton(
-                text = "Search Books",
-                onClick = { navController.navigate("search_books_screen")}
-            )
+            Books()
 
         }
 

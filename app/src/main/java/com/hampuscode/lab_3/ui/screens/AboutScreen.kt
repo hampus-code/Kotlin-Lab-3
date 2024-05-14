@@ -40,7 +40,9 @@ fun AboutScreen(navController: NavController) {
         ) {
 
             CustomText(text = "This is an app where you can search for all kind of books " +
-                    "in an API library. ", modifier = Modifier.padding(horizontal = 50.dp))
+                    "in an API library. In further development in a future version," +
+                    " it is intended that you as a user will be able to add your favorite books to your own list." +
+                    " So stay tuned for more! ", modifier = Modifier.padding(horizontal = 50.dp))
         }
 
         Column(

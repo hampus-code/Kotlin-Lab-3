@@ -9,7 +9,6 @@ import com.hampuscode.lab_3.api.Book
 data class User(
     var userName: String,
     var password: String,
-    //var bookList: MutableList<Book> = mutableListOf()
 ) {
 
 
