@@ -43,18 +43,10 @@ import kotlinx.coroutines.Dispatchers
 
 
 @Composable
-@Preview(showBackground = true)
-fun RegisterScreenPreview() {
-    val navController = rememberNavController()
-    val context = LocalContext.current
-
-    //RegisterScreen(navController = navController, context = context,)
-}
-@Composable
 fun RegisterScreen(navController: NavController, context: Context, userRepository: UserRepository) {
 
     val enteredUsername = rememberSaveable { mutableStateOf("") } //Remembering user input for username
-    val enteredPassword = rememberSaveable { mutableStateOf("TextFieldValue()") } //Remembering user input for password
+    val enteredPassword = rememberSaveable { mutableStateOf("") } //Remembering user input for password
 
     Box(
         modifier = Modifier.fillMaxSize()

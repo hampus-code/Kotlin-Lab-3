@@ -57,7 +57,6 @@ fun LoginScreen(navController: NavController, context: Context, userRepository: 
 
     Box(
         modifier = Modifier.fillMaxSize()
-        // TODO// - .verticalScroll(rememberScrollState())
     ) {
         Image(
             //Background image

@@ -1,6 +1,5 @@
 package com.hampuscode.lab_3.composables
 
-//import com.hampuscode.lab_3.ui.components.SpeechToText
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
